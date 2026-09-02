@@ -2,7 +2,7 @@
 
 import { useRef, useState } from "react";
 import { motion, useInView } from "motion/react";
-import { EnvelopeSimple, Phone, MapPin, PaperPlaneRight } from "@phosphor-icons/react";
+import { EnvelopeSimple, Phone, LinkedinLogo, PaperPlaneRight } from "@phosphor-icons/react";
 
 interface ContactInfo {
   email: string;
@@ -20,70 +20,75 @@ export default function Contact({ info }: { info: ContactInfo }) {
     message: "",
   });
   const [submitted, setSubmitted] = useState(false);
+  const [errors, setErrors] = useState<Record<string, string>>({});
+
+  const validate = () => {
+    const newErrors: Record<string, string> = {};
+    if (!formState.name.trim()) newErrors.name = "Name is required";
+    if (!formState.email.trim()) newErrors.email = "Email is required";
+    else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(formState.email)) newErrors.email = "Invalid email format";
+    if (!formState.message.trim()) newErrors.message = "Message is required";
+    setErrors(newErrors);
+    return Object.keys(newErrors).length === 0;
+  };
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    // Form submission logic here
+    if (!validate()) return;
     setSubmitted(true);
-    setTimeout(() => setSubmitted(false), 3000);
+    setTimeout(() => setSubmitted(false), 4000);
     setFormState({ name: "", email: "", message: "" });
   };
 
   return (
-    <section id="contact" className="relative py-32 md:py-40 bg-[#0f0f0f]">
-      <div ref={ref} className="max-w-[1400px] mx-auto px-6 md:px-12">
-        {/* Section header */}
-        <div className="flex items-center gap-4 mb-16">
-          <div className="w-12 h-[1px] bg-[#c8ff00]" />
-          <span className="text-xs tracking-[0.3em] uppercase text-white/40">Contact</span>
-        </div>
-
-        <div className="grid md:grid-cols-2 gap-16 md:gap-24">
-          {/* Left: info */}
+    <section id="contact" className="relative section bg-[var(--color-anthracite-deep)]">
+      <div ref={ref} className="container-main">
+        <div className="grid md:grid-cols-2 gap-12 md:gap-16">
           <div>
             <motion.h2
               initial={{ opacity: 0, y: 40 }}
               animate={isInView ? { opacity: 1, y: 0 } : {}}
               transition={{ duration: 0.8, ease: [0.76, 0, 0.24, 1] }}
-              className="text-3xl md:text-5xl font-light tracking-tight text-white mb-8"
+              className="headline-section mb-6"
             >
-              Let&apos;s work{" "}
-              <span className="text-[#c8ff00]">together</span>
+              Let&apos;s turn{" "}
+              <span className="headline-accent">execution</span> into strategy
             </motion.h2>
 
             <motion.p
               initial={{ opacity: 0, y: 40 }}
               animate={isInView ? { opacity: 1, y: 0 } : {}}
               transition={{ duration: 0.8, delay: 0.1, ease: [0.76, 0, 0.24, 1] }}
-              className="text-base text-white/50 leading-relaxed mb-12"
+              className="body-copy mb-10"
             >
-              Have a project in mind or just want to chat? Feel free to reach out.
-              I&apos;m always open to new opportunities and interesting conversations.
+              Four years shipping enterprise software taught me how to solve the technical problem.
+              Now I want to solve the business one, for your team.
             </motion.p>
 
-            <div className="space-y-6">
+            <motion.div
+              initial={{ opacity: 0, y: 40 }}
+              animate={isInView ? { opacity: 1, y: 0 } : {}}
+              transition={{ duration: 0.8, delay: 0.2, ease: [0.76, 0, 0.24, 1] }}
+              className="space-y-5"
+            >
               <motion.a
                 href={`mailto:${info.email}`}
-                initial={{ opacity: 0, x: -20 }}
-                animate={isInView ? { opacity: 1, x: 0 } : {}}
-                transition={{ duration: 0.6, delay: 0.2 }}
-                className="flex items-center gap-4 text-white/60 hover:text-[#c8ff00] transition-colors group"
+                className="flex items-center gap-4 text-[var(--color-steel)] hover:text-[var(--color-copper)] transition-colors group"
+                whileHover={{ x: 4 }}
               >
-                <div className="p-3 bg-[#141414] border border-[#222] group-hover:border-[#c8ff00]/30 transition-colors">
-                  <EnvelopeSimple size={18} />
+                <div className="p-3 card-surface group-hover:border-[var(--color-copper)]/30 transition-colors">
+                  <EnvelopeSimple size={18} className="text-[var(--color-copper)]" />
                 </div>
                 <span className="text-sm">{info.email}</span>
               </motion.a>
 
               <motion.a
                 href={`tel:${info.phone}`}
-                initial={{ opacity: 0, x: -20 }}
-                animate={isInView ? { opacity: 1, x: 0 } : {}}
-                transition={{ duration: 0.6, delay: 0.3 }}
-                className="flex items-center gap-4 text-white/60 hover:text-[#c8ff00] transition-colors group"
+                className="flex items-center gap-4 text-[var(--color-steel)] hover:text-[var(--color-copper)] transition-colors group"
+                whileHover={{ x: 4 }}
               >
-                <div className="p-3 bg-[#141414] border border-[#222] group-hover:border-[#c8ff00]/30 transition-colors">
-                  <Phone size={18} />
+                <div className="p-3 card-surface group-hover:border-[var(--color-copper)]/30 transition-colors">
+                  <Phone size={18} className="text-[var(--color-copper)]" />
                 </div>
                 <span className="text-sm">{info.phone}</span>
               </motion.a>
@@ -92,68 +97,126 @@ export default function Contact({ info }: { info: ContactInfo }) {
                 href={info.linkedin}
                 target="_blank"
                 rel="noopener noreferrer"
-                initial={{ opacity: 0, x: -20 }}
-                animate={isInView ? { opacity: 1, x: 0 } : {}}
-                transition={{ duration: 0.6, delay: 0.4 }}
-                className="flex items-center gap-4 text-white/60 hover:text-[#c8ff00] transition-colors group"
+                className="flex items-center gap-4 text-[var(--color-steel)] hover:text-[var(--color-copper)] transition-colors group"
+                whileHover={{ x: 4 }}
               >
-                <div className="p-3 bg-[#141414] border border-[#222] group-hover:border-[#c8ff00]/30 transition-colors">
-                  <MapPin size={18} />
+                <div className="p-3 card-surface group-hover:border-[var(--color-copper)]/30 transition-colors">
+                  <LinkedinLogo size={18} className="text-[var(--color-copper)]" />
                 </div>
                 <span className="text-sm">LinkedIn Profile</span>
               </motion.a>
-            </div>
+            </motion.div>
+
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={isInView ? { opacity: 1, y: 0 } : {}}
+              transition={{ duration: 0.8, delay: 0.5, ease: [0.76, 0, 0.24, 1] }}
+              className="mt-10 p-6 card-surface border-[var(--color-copper)]/30"
+            >
+              <p className="body-copy-sm text-center">
+                <strong className="text-[var(--color-platinum)]">100% secure transactions. 70-80% less fraud.</strong> That&apos;s the kind of execution I bring to the table.
+              </p>
+            </motion.div>
           </div>
 
-          {/* Right: form */}
           <motion.form
             onSubmit={handleSubmit}
             initial={{ opacity: 0, y: 40 }}
             animate={isInView ? { opacity: 1, y: 0 } : {}}
-            transition={{ duration: 0.8, delay: 0.2 }}
+            transition={{ duration: 0.8, delay: 0.2, ease: [0.76, 0, 0.24, 1] }}
             className="space-y-6"
+            noValidate
           >
-            <div className="space-y-2">
-              <label className="text-xs text-white/40 tracking-wider uppercase">Name</label>
+            <div>
+              <label htmlFor="name" className="label-field">
+                Name
+              </label>
               <input
                 type="text"
+                id="name"
                 value={formState.name}
                 onChange={(e) => setFormState({ ...formState, name: e.target.value })}
                 required
-                className="w-full px-4 py-4 bg-[#141414] border border-[#222] text-white text-sm focus:outline-none focus:border-[#c8ff00]/50 transition-colors placeholder:text-white/20"
+                className="input-field"
                 placeholder="Your name"
+                aria-invalid={!!errors.name}
+                aria-describedby={errors.name ? "name-error" : undefined}
               />
+              {errors.name && (
+                <motion.p
+                  id="name-error"
+                  initial={{ opacity: 0, y: -10 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  className="text-xs text-[var(--color-copper)] mt-1"
+                  role="alert"
+                >
+                  {errors.name}
+                </motion.p>
+              )}
             </div>
 
-            <div className="space-y-2">
-              <label className="text-xs text-white/40 tracking-wider uppercase">Email</label>
+            <div>
+              <label htmlFor="email" className="label-field">
+                Email
+              </label>
               <input
                 type="email"
+                id="email"
                 value={formState.email}
                 onChange={(e) => setFormState({ ...formState, email: e.target.value })}
                 required
-                className="w-full px-4 py-4 bg-[#141414] border border-[#222] text-white text-sm focus:outline-none focus:border-[#c8ff00]/50 transition-colors placeholder:text-white/20"
+                className="input-field"
                 placeholder="your@email.com"
+                aria-invalid={!!errors.email}
+                aria-describedby={errors.email ? "email-error" : undefined}
               />
+              {errors.email && (
+                <motion.p
+                  id="email-error"
+                  initial={{ opacity: 0, y: -10 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  className="text-xs text-[var(--color-copper)] mt-1"
+                  role="alert"
+                >
+                  {errors.email}
+                </motion.p>
+              )}
             </div>
 
-            <div className="space-y-2">
-              <label className="text-xs text-white/40 tracking-wider uppercase">Message</label>
+            <div>
+              <label htmlFor="message" className="label-field">
+                Message
+              </label>
               <textarea
+                id="message"
                 value={formState.message}
                 onChange={(e) => setFormState({ ...formState, message: e.target.value })}
                 required
                 rows={5}
-                className="w-full px-4 py-4 bg-[#141414] border border-[#222] text-white text-sm focus:outline-none focus:border-[#c8ff00]/50 transition-colors resize-none placeholder:text-white/20"
+                className="input-field resize-none"
                 placeholder="Tell me about your project..."
+                aria-invalid={!!errors.message}
+                aria-describedby={errors.message ? "message-error" : undefined}
               />
+              {errors.message && (
+                <motion.p
+                  id="message-error"
+                  initial={{ opacity: 0, y: -10 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  className="text-xs text-[var(--color-copper)] mt-1"
+                  role="alert"
+                >
+                  {errors.message}
+                </motion.p>
+              )}
             </div>
 
             <motion.button
               type="submit"
-              className="group flex items-center gap-3 px-8 py-4 bg-[#c8ff00] text-[#0a0a0a] text-sm font-medium tracking-wide hover:bg-[#b8f000] transition-colors"
+              className="btn btn-primary w-full sm:w-auto group"
               whileHover={{ scale: 1.02 }}
               whileTap={{ scale: 0.98 }}
+              disabled={submitted}
             >
               {submitted ? "Message Sent!" : "Send Message"}
               <PaperPlaneRight

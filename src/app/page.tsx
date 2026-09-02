@@ -7,13 +7,14 @@ import Hero from "@/components/Hero";
 import About from "@/components/About";
 import Projects from "@/components/Projects";
 import Experience from "@/components/Experience";
+import Skills from "@/components/Skills";
 import Contact from "@/components/Contact";
 import Footer from "@/components/Footer";
+import ScrollTracker from "@/components/ScrollTracker";
 
-// Update these with your actual information
 const SITE_CONFIG = {
   github: "deveshsety",
-  linkedin: "https://linkedin.com/in/YOUR_PROFILE",
+  linkedin: "https://www.linkedin.com/in/devesh-sety-a08367215",
   email: "devesh.ft272029@greatlakes.edu.in",
   phone: "+91 7977740996",
 };
@@ -31,11 +32,13 @@ export default function Home() {
         }`}
       >
         <Navigation />
+        <ScrollTracker sections={["home", "about", "projects", "experience", "skills", "contact"]} />
         <main>
           <Hero />
           <About />
-          <Projects username={SITE_CONFIG.github} />
+          <Projects />
           <Experience />
+          <Skills />
           <Contact
             info={{
               email: SITE_CONFIG.email,

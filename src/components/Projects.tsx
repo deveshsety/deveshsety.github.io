@@ -4,137 +4,165 @@ import { useRef, useState, useEffect } from "react";
 import { motion, useInView } from "motion/react";
 import { GithubLogo, ArrowUpRight } from "@phosphor-icons/react";
 
-interface Repo {
+interface Project {
   id: number;
   name: string;
-  description: string | null;
-  html_url: string;
-  homepage: string | null;
+  description: string;
+  scope: string;
+  outcome: string;
+  url: string;
   language: string | null;
-  stargazers_count: number;
   topics: string[];
 }
 
-export default function Projects({ username }: { username: string }) {
+const allProjects: Project[] = [
+  {
+    id: 1,
+    name: "ERP Readiness Questionnaire",
+    description: "Interactive diagnostic scoring organizational readiness across process maturity, data quality, and change-management capacity.",
+    scope: "Process maturity, data quality, and change-management capacity assessment",
+    outcome: "Gives leadership a defensible go/no-go signal before engaging a vendor.",
+    url: "https://deveshsety.github.io/erp-questionnaire/",
+    language: "JavaScript",
+    topics: ["HTML", "CSS", "JavaScript"],
+  },
+  {
+    id: 2,
+    name: "Consulting Arena",
+    description: "Self-guided case interview simulator with timed frameworks, quantitative drills, and structured feedback loops.",
+    scope: "MBB-style case interview prep with timed frameworks and quantitative drills",
+    outcome: "Mirrors real interview flow for structured practice and feedback.",
+    url: "https://github.com/deveshsety/consulting-arena",
+    language: "JavaScript",
+    topics: ["JavaScript", "HTML", "CSS"],
+  },
+  {
+    id: 3,
+    name: "GrowthExchange",
+    description: "Two-sided marketplace matching founders with channel-specialist growth marketers with scoping and milestone tracking.",
+    scope: "SEO, paid social, retention, and referral specialist matching",
+    outcome: "Streamlines founder-marketer pairing with project scoping built in.",
+    url: "https://github.com/deveshsety/GrowthExchange",
+    language: "JavaScript",
+    topics: ["JavaScript", "HTML", "SCSS"],
+  },
+];
+
+function humanizeName(name: string): string {
+  return name
+    .replace(/[-_]/g, " ")
+    .replace(/([a-z])([A-Z])/g, "$1 $2")
+    .replace(/\b\w/g, (c) => c.toUpperCase());
+}
+
+export default function Projects() {
   const ref = useRef<HTMLDivElement>(null);
   const isInView = useInView(ref, { once: true, amount: 0.1 });
-  const [repos, setRepos] = useState<Repo[]>([]);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    if (!username) return;
-    fetch(`https://api.github.com/users/${username}/repos?sort=updated&per_page=6`)
-      .then((res) => res.json())
-      .then((data) => {
-        if (Array.isArray(data)) {
-          setRepos(data.filter((r: Repo) => !r.name.startsWith(".")));
-        }
-        setLoading(false);
-      })
-      .catch(() => setLoading(false));
-  }, [username]);
+    const timer = setTimeout(() => setLoading(false), 300);
+    return () => clearTimeout(timer);
+  }, []);
 
   return (
-    <section id="projects" className="relative py-32 md:py-40 bg-[#0f0f0f]">
-      <div ref={ref} className="max-w-[1400px] mx-auto px-6 md:px-12">
-        {/* Section header */}
-        <div className="flex items-center gap-4 mb-16">
-          <div className="w-12 h-[1px] bg-[#c8ff00]" />
-          <span className="text-xs tracking-[0.3em] uppercase text-white/40">Projects</span>
+    <section id="projects" className="relative section bg-[var(--color-anthracite-deep)]">
+      <div ref={ref} className="container-main">
+        <div className="section-header">
+          <div className="section-line" />
+          <span className="section-eyebrow">Work</span>
         </div>
 
         <motion.h2
           initial={{ opacity: 0, y: 40 }}
           animate={isInView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.8, ease: [0.76, 0, 0.24, 1] }}
-          className="text-3xl md:text-5xl font-light tracking-tight text-white mb-16"
+          className="headline-section mb-16"
         >
           Featured Work
         </motion.h2>
 
         {loading ? (
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+          <div className="grid md:grid-cols-3 gap-6">
             {[1, 2, 3].map((i) => (
-              <div
-                key={i}
-                className="h-[280px] bg-[#141414] border border-[#222] animate-pulse"
-              />
+              <div key={i} className="h-[320px] card-surface animate-pulse" />
             ))}
           </div>
-        ) : repos.length === 0 ? (
-          <motion.p
-            initial={{ opacity: 0 }}
-            animate={isInView ? { opacity: 1 } : {}}
-            className="text-white/40 text-lg"
-          >
-            No public repositories found. Add your GitHub username to display projects.
-          </motion.p>
         ) : (
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {repos.map((repo, i) => (
-              <motion.a
-                key={repo.id}
-                href={repo.homepage || repo.html_url}
-                target="_blank"
-                rel="noopener noreferrer"
-                initial={{ opacity: 0, y: 40 }}
+          <div className="grid md:grid-cols-3 gap-6">
+            {allProjects.map((project, i) => (
+              <motion.div
+                key={project.id}
+                initial={{ opacity: 0, y: 30 }}
                 animate={isInView ? { opacity: 1, y: 0 } : {}}
                 transition={{
-                  duration: 0.6,
+                  duration: 0.5,
                   delay: i * 0.1,
                   ease: [0.76, 0, 0.24, 1],
                 }}
-                className="group relative p-8 bg-[#141414] border border-[#222] hover:border-[#c8ff00]/30 transition-all duration-500 flex flex-col"
               >
-                {/* Top row */}
-                <div className="flex items-start justify-between mb-6">
-                  <GithubLogo
-                    size={24}
-                    className="text-white/20 group-hover:text-[#c8ff00] transition-colors"
-                  />
-                  <ArrowUpRight
-                    size={16}
-                    className="text-white/20 group-hover:text-[#c8ff00] group-hover:translate-x-1 group-hover:-translate-y-1 transition-all"
-                  />
-                </div>
+                <motion.a
+                  href={project.url}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="group card-surface overflow-hidden flex flex-col h-full"
+                  whileHover={{ y: -4 }}
+                  whileTap={{ scale: 0.98 }}
+                >
+                  <div className="p-6 flex flex-col flex-1">
+                    {/* Header: icon + link arrow */}
+                    <div className="flex items-start justify-between mb-4">
+                      <div className="w-9 h-9 flex items-center justify-center border border-[rgba(193,124,90,0.2)] bg-[rgba(193,124,90,0.06)] group-hover:border-[rgba(193,124,90,0.35)] group-hover:bg-[rgba(193,124,90,0.1)] transition-all duration-[400ms] ease-[cubic-bezier(0.16,1,0.3,1)]">
+                        <GithubLogo size={16} className="text-[var(--color-copper)]" />
+                      </div>
+                      <ArrowUpRight size={14} className="text-[var(--color-steel-dim)] group-hover:text-[var(--color-copper)] group-hover:translate-x-1 group-hover:-translate-y-1 transition-all" />
+                    </div>
 
-                {/* Content */}
-                <h3 className="text-lg font-medium text-white mb-3 group-hover:text-[#c8ff00] transition-colors">
-                  {repo.name}
-                </h3>
-                <p className="text-sm text-white/40 leading-relaxed mb-6 flex-1 line-clamp-3">
-                  {repo.description || "No description provided."}
-                </p>
+                    {/* Title */}
+                    <h3 className="text-lg font-semibold text-[var(--color-platinum)] mb-2 group-hover:text-[var(--color-copper)] transition-colors">
+                      {project.name}
+                    </h3>
 
-                {/* Footer */}
-                <div className="flex items-center gap-4 pt-4 border-t border-[#222]">
-                  {repo.language && (
-                    <span className="text-xs text-white/30 flex items-center gap-2">
-                      <span className="w-2 h-2 rounded-full bg-[#c8ff00]" />
-                      {repo.language}
-                    </span>
-                  )}
-                  {repo.stargazers_count > 0 && (
-                    <span className="text-xs text-white/30">
-                      {repo.stargazers_count} stars
-                    </span>
-                  )}
-                </div>
+                    {/* Description */}
+                    <p className="text-sm text-[var(--color-steel)] leading-relaxed mb-4 flex-1 line-clamp-2">
+                      {project.description}
+                    </p>
 
-                {/* Topics */}
-                {repo.topics.length > 0 && (
-                  <div className="flex flex-wrap gap-2 mt-4">
-                    {repo.topics.slice(0, 3).map((topic) => (
-                      <span
-                        key={topic}
-                        className="text-[10px] px-2 py-1 bg-[#c8ff00]/10 text-[#c8ff00]/70 rounded"
-                      >
-                        {topic}
-                      </span>
-                    ))}
+                    {/* Scope + Outcome rows */}
+                    <div className="grid grid-cols-1 gap-2 mb-4">
+                      <div className="p-3 bg-[rgba(255,255,255,0.02)] border border-[rgba(255,255,255,0.05)]">
+                        <span className="text-[10px] uppercase tracking-wider text-[var(--color-copper)] font-medium block mb-1">Scope</span>
+                        <span className="text-xs text-[var(--color-platinum)] leading-relaxed line-clamp-2">{project.scope}</span>
+                      </div>
+                      <div className="p-3 bg-[rgba(255,255,255,0.02)] border border-[rgba(255,255,255,0.05)]">
+                        <span className="text-[10px] uppercase tracking-wider text-[var(--color-copper)] font-medium block mb-1">Impact</span>
+                        <span className="text-xs text-[var(--color-platinum)] leading-relaxed line-clamp-2">{project.outcome}</span>
+                      </div>
+                    </div>
+
+                    {/* Tags */}
+                    {project.topics.length > 0 && (
+                      <div className="flex flex-wrap gap-1.5 mb-4">
+                        {project.topics.slice(0, 3).map((topic: string) => (
+                          <span key={topic} className="tag tag-copper">
+                            {topic}
+                          </span>
+                        ))}
+                      </div>
+                    )}
+
+                    {/* Language */}
+                    <div className="flex items-center gap-3 pt-3 border-t border-[var(--color-slate-border)] mt-auto">
+                      {project.language && (
+                        <span className="text-xs text-[var(--color-steel-dim)] flex items-center gap-1.5">
+                          <span className="w-1.5 h-1.5 rounded-full bg-[var(--color-copper)]" />
+                          {project.language}
+                        </span>
+                      )}
+                    </div>
                   </div>
-                )}
-              </motion.a>
+                </motion.a>
+              </motion.div>
             ))}
           </div>
         )}
