@@ -10,6 +10,7 @@ const navLinks = [
   { label: "Projects", href: "#projects" },
   { label: "Experience", href: "#experience" },
   { label: "Skills", href: "#skills" },
+  { label: "Education", href: "#education" },
   { label: "Contact", href: "#contact" },
 ];
 
@@ -49,11 +50,11 @@ export default function Navigation() {
           <motion.a
             href="#home"
             onClick={(e) => { e.preventDefault(); scrollTo("#home"); }}
-            className="text-lg font-medium tracking-tight text-[var(--color-platinum)] hover:text-[var(--color-copper)] transition-colors"
+            className="text-lg font-medium tracking-tight name-bronze-nav hover:opacity-80 transition-opacity"
             whileHover={{ scale: 1.02 }}
             whileTap={{ scale: 0.98 }}
           >
-            DS<span className="text-[var(--color-copper)]">.</span>
+            Devesh Sety
           </motion.a>
 
           <div className="hidden md:flex items-center gap-10">

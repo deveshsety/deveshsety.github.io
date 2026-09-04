@@ -86,9 +86,9 @@ export default function Hero() {
             custom={3}
             className="flex items-baseline gap-3 mt-4"
           >
-            <span className="metric-large">70-80%</span>
+            <span className="metric-large">80%</span>
             <span className="metric-label">
-              reduction in fraudulent account creation across enterprise payment systems
+              reduction in report generation time across enterprise cycles
             </span>
           </motion.div>
 

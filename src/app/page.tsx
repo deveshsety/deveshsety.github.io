@@ -8,6 +8,8 @@ import About from "@/components/About";
 import Projects from "@/components/Projects";
 import Experience from "@/components/Experience";
 import Skills from "@/components/Skills";
+import Education from "@/components/Education";
+import Awards from "@/components/Awards";
 import Contact from "@/components/Contact";
 import Footer from "@/components/Footer";
 import ScrollTracker from "@/components/ScrollTracker";
@@ -32,13 +34,15 @@ export default function Home() {
         }`}
       >
         <Navigation />
-        <ScrollTracker sections={["home", "about", "projects", "experience", "skills", "contact"]} />
+        <ScrollTracker sections={["home", "about", "projects", "experience", "skills", "education", "awards", "contact"]} />
         <main>
           <Hero />
           <About />
           <Projects />
           <Experience />
           <Skills />
+          <Education />
+          <Awards />
           <Contact
             info={{
               email: SITE_CONFIG.email,

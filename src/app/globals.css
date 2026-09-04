@@ -103,6 +103,61 @@ body {
   100% { transform: translateX(200%); }
 }
 
+/* Bronze shine — perpetual sweep across text */
+@keyframes bronze-shine {
+  0% { background-position: -200% center; }
+  100% { background-position: 200% center; }
+}
+
+.name-bronze {
+  font-size: clamp(3rem, 8vw, 7rem);
+  font-weight: 100;
+  line-height: 1;
+  letter-spacing: -0.03em;
+  background: linear-gradient(
+    90deg,
+    var(--color-copper) 0%,
+    #e8c4a0 25%,
+    var(--color-copper) 50%,
+    #d4956b 75%,
+    var(--color-copper) 100%
+  );
+  background-size: 200% auto;
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: bronze-shine 4s linear infinite;
+  will-change: background-position;
+}
+
+.name-bronze-nav {
+  font-size: 1.125rem;
+  font-weight: 500;
+  letter-spacing: -0.01em;
+  background: linear-gradient(
+    90deg,
+    var(--color-copper) 0%,
+    #e8c4a0 30%,
+    var(--color-copper) 50%,
+    #d4956b 70%,
+    var(--color-copper) 100%
+  );
+  background-size: 200% auto;
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: bronze-shine 3s linear infinite;
+  will-change: background-position;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .name-bronze,
+  .name-bronze-nav {
+    animation: none;
+    background-position: 0% center;
+  }
+}
+
 /* Reduced motion overrides */
 @media (prefers-reduced-motion: reduce) {
   .motion-reduce\:static { animation: none !important; transition: none !important; }

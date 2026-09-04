@@ -7,24 +7,43 @@ import { motion, useInView } from "motion/react";
 const experiences = [
   {
     type: "work" as const,
-    title: "Backend Developer",
+    title: "Backend Developer A3",
     company: "OSF Digital",
-    period: "Jul 2021 – Apr 2026",
+    period: "Feb 2025 – Apr 2026",
     achievements: [
-      "Directed the security architecture for a global brand's payment gateway, enabling secure authorization for <strong>100% of client transactions</strong>",
-      "Built a structured design-review system across frontend and QA, embedding quality checkpoints into the Agile workflow and <strong>reducing solution defects</strong>",
-      "Architected a scalable inventory foundation that let the brand expand its catalogue on demand, <strong>shortening the runway from concept to market launch</strong>",
-      "Spotted a cross-sell gap in the subscription flow and led the design and launch of an upsell feature, <strong>lifting attach rates 15-20%</strong>",
-      "Led account-verification and fraud due-diligence work, <strong>cutting fraudulent account creation by 70-80%</strong>",
+      "Directed the shift to a stronger, multi-step payment verification process after assessing a current-state gap against rising security standards, <strong>securing 100% of customer CC transactions</strong>",
+      "Coordinated scrum calls and JIRA tracking across global and localized teams, <strong>closing delivery misalignment during critical cycles</strong>",
+      "Overhauled standard order reporting into automated, customizable formats aligned to business analysis needs, <strong>cutting report generation time by 80% every cycle</strong>",
+    ],
+  },
+  {
+    type: "work" as const,
+    title: "Backend Developer Junior 2",
+    company: "OSF Digital",
+    period: "Mar 2023 – Feb 2025",
+    achievements: [
+      "Recommended an up-sell feature after spotting a gap in the subscription flow, partnered with stakeholders to design and launch it, <strong>lifting attach rates by 15-20%</strong> and boosting subscription revenue per customer",
+      "Implemented a save-for-later capability to re-engage users post-visit, <strong>contributing to Average Order Value growth</strong>",
+    ],
+  },
+  {
+    type: "work" as const,
+    title: "Backend Developer Junior 1",
+    company: "OSF Digital",
+    period: "May 2022 – Mar 2023",
+    achievements: [
+      "Streamlined the product listing page to persist filter and navigation state across sessions, <strong>improving return-visit engagement</strong>",
+      "Architected a scalable inventory foundation that gave the brand the flexibility to expand its catalogue on demand, <strong>shortening the runway from product concept to market launch</strong>",
     ],
   },
   {
     type: "education" as const,
-    title: "Academic Project",
-    company: "Tech-Ed Platform",
-    period: "2024",
+    title: "Academic Projects",
+    company: "Great Lakes Institute of Management",
+    period: "2026",
     achievements: [
-      "Designed an adaptive tech-ed platform integrating microlearning and gamification into onboarding, <strong>projected to increase user retention by 50%</strong>",
+      "Ideated an ERP readiness tool, designing an agentic AI workflow with phase-gated QA checkpoints that autonomously validated each development phase, <strong>condensing a multi-week review into a same-day turnaround</strong>",
+      "Analyzed manual process flow bottlenecks in cast nylon manufacturing, building a simulation-based framework to identify and test improvement scenarios, <strong>aiming to reduce cycle time and manual dependency in production</strong>",
     ],
   },
 ];

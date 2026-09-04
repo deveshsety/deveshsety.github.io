@@ -8,10 +8,9 @@ const technicalSkills = [
   "Salesforce B2C Developer Certified (2022)",
   "Payment Systems & Security",
   "Agile/Scrum",
-  "Next.js",
-  "TypeScript",
-  "Tailwind CSS",
-  "Motion (Framer Motion)",
+  "Agentic AI",
+  "CRM Expertise",
+  "Platform Architecture",
 ];
 
 const consultingSkills = [
@@ -19,7 +18,7 @@ const consultingSkills = [
   "Structured Problem Solving",
   "Commercial Judgment",
   "Identifying Gaps",
-  "Result-Oriented Execution",
+  "Result Oriented",
   "Agile Program Coordination",
 ];
 
@@ -89,7 +88,7 @@ export default function Skills() {
           transition={{ duration: 0.6, delay: 0.5, ease: [0.76, 0, 0.24, 1] }}
           className="mt-10 text-sm text-[var(--color-steel-dim)] italic"
         >
-          Outside work: competitive table tennis, football, and a growing coffee-brewing habit.
+          Outside work: table tennis (national level), football, e-sports, and coffee brewing.
         </motion.p>
       </div>
     </section>

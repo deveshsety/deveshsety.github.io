@@ -16,7 +16,7 @@ const jetbrainsMono = JetBrains_Mono({
 
 export const metadata: Metadata = {
   title: "Devesh Sety | Backend Developer → Tech & Strategy Consulting",
-  description: "Four years shipping enterprise software at OSF Digital (L'Occitane, GAP, PLDT). Now PGPM at GLIM applying technical execution to strategy consulting.",
+  description: "Coordinating technology workstreams for enterprise clients at OSF Digital. Now PGPM at GLIM applying technical execution to strategy consulting.",
   icons: {
     icon: "/favicon.svg",
   },

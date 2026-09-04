@@ -19,7 +19,7 @@ const allProjects: Project[] = [
   {
     id: 1,
     name: "ERP Readiness Questionnaire",
-    description: "Interactive diagnostic scoring organizational readiness across process maturity, data quality, and change-management capacity.",
+    description: "Interactive diagnostic with agentic AI workflow and phase-gated QA checkpoints, condensing multi-week reviews into same-day turnarounds.",
     scope: "Process maturity, data quality, and change-management capacity assessment",
     outcome: "Gives leadership a defensible go/no-go signal before engaging a vendor.",
     url: "https://deveshsety.github.io/erp-questionnaire/",

@@ -7,50 +7,23 @@ import { Database, ShieldCheck, Code, TrendUp } from "@phosphor-icons/react";
 const highlights = [
   {
     icon: Database,
-    label: "Scalable Systems",
-    description: "Architecting foundations that grow with business demands",
+    label: "Platform Architecture",
+    description: "Scalable inventory foundations and catalogue expansion on demand",
   },
   {
     icon: ShieldCheck,
-    label: "Secure Payments",
-    description: "International payment gateway security for 100% of transactions",
+    label: "Payment Security",
+    description: "Multi-step verification securing 100% of customer CC transactions",
   },
   {
     icon: Code,
-    label: "Quality Engineering",
-    description: "Design review systems reducing defects across teams",
+    label: "Agentic AI Workflows",
+    description: "Phase-gated QA checkpoints condensing multi-week reviews into same-day turnarounds",
   },
   {
     icon: TrendUp,
-    label: "Revenue Growth",
-    description: "Upsell features boosting subscription revenue 15-20%",
-  },
-];
-
-const clientLogos = [
-  {
-    name: "L'Occitane Japan",
-    icon: (
-      <svg viewBox="0 0 80 20" fill="currentColor" className="h-5 w-auto">
-        <text x="0" y="15" fontFamily="var(--font-display)" fontSize="14" fontWeight="600" letterSpacing="-0.02em">L&apos;Occitane</text>
-      </svg>
-    ),
-  },
-  {
-    name: "GAP Japan",
-    icon: (
-      <svg viewBox="0 0 40 20" fill="currentColor" className="h-5 w-auto">
-        <text x="0" y="15" fontFamily="var(--font-display)" fontSize="16" fontWeight="700" letterSpacing="0.15em">GAP</text>
-      </svg>
-    ),
-  },
-  {
-    name: "PLDT Philippines",
-    icon: (
-      <svg viewBox="0 0 50 20" fill="currentColor" className="h-5 w-auto">
-        <text x="0" y="15" fontFamily="var(--font-display)" fontSize="14" fontWeight="700" letterSpacing="0.05em">PLDT</text>
-      </svg>
-    ),
+    label: "Revenue Optimization",
+    description: "Upsell features lifting attach rates 15-20% and AOV growth",
   },
 ];
 
@@ -84,7 +57,7 @@ export default function About() {
               transition={{ duration: 0.8, delay: 0.1, ease: [0.76, 0, 0.24, 1] }}
               className="body-copy mb-6"
             >
-              I spent four years as a <strong>Backend Developer at OSF Digital</strong>, building and securing Salesforce Commerce Cloud platforms for global brands including <strong>L&apos;Occitane Japan, GAP Japan, and PLDT Philippines</strong>. Along the way, I stopped seeing my work as just code. I started seeing it as <strong>business decisions with a technical solution attached</strong>: a payment gateway wasn&apos;t just an integration, it was trust at scale; an upsell feature wasn&apos;t just a build, it was <strong>15-20% more revenue per customer</strong>.
+              I coordinated technology workstreams for enterprise clients at <strong>OSF Digital</strong> across three progressive roles, translating business requirements into platform and architecture strategies. Along the way, I stopped seeing my work as just code. I started seeing it as <strong>business decisions with a technical solution attached</strong>: a payment verification shift wasn&apos;t just a security update, it was trust at scale; an upsell feature wasn&apos;t just a build, it was <strong>15-20% more revenue per customer</strong>.
             </motion.p>
 
             <motion.p
@@ -95,34 +68,6 @@ export default function About() {
             >
               That shift in how I thought about my own work is why I&apos;m now pursuing a <strong>PGPM at Great Lakes Institute of Management</strong>, and why I&apos;m aiming for <strong>tech and strategy consulting</strong> roles. I want to keep solving the business problem, just further upstream, and for more than one company at a time.
             </motion.p>
-
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={isInView ? { opacity: 1, y: 0 } : {}}
-              transition={{ duration: 0.8, delay: 0.4, ease: [0.76, 0, 0.24, 1] }}
-              className="logo-strip mt-10"
-              role="list"
-              aria-label="Clients worked with"
-            >
-              {clientLogos.map((client, i) => (
-                <motion.div
-                  key={client.name}
-                  initial={{ opacity: 0, y: 10 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ delay: 0.5 + i * 0.1 }}
-                  className="flex items-center gap-2"
-                  role="listitem"
-                >
-                  <motion.div
-                    className="text-[var(--color-steel-dim)] transition-all duration-400 ease-[cubic-bezier(0.16,1,0.3,1)] group-hover:text-[var(--color-copper)] group-hover:-translate-y-1"
-                    whileHover={{ scale: 1.1 }}
-                  >
-                    {client.icon}
-                  </motion.div>
-                  <span className="text-xs text-[var(--color-steel-dim)] hidden sm:inline">{client.name}</span>
-                </motion.div>
-              ))}
-            </motion.div>
           </div>
 
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">

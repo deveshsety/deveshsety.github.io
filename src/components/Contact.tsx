@@ -114,7 +114,7 @@ export default function Contact({ info }: { info: ContactInfo }) {
               className="mt-10 p-6 card-surface border-[var(--color-copper)]/30"
             >
               <p className="body-copy-sm text-center">
-                <strong className="text-[var(--color-platinum)]">100% secure transactions. 70-80% less fraud.</strong> That&apos;s the kind of execution I bring to the table.
+                <strong className="text-[var(--color-platinum)]">100% secure transactions. 80% faster reporting.</strong> That&apos;s the kind of execution I bring to the table.
               </p>
             </motion.div>
           </div>
