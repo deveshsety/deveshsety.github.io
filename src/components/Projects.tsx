@@ -24,7 +24,7 @@ const allProjects: Project[] = [
     outcome: "Gives leadership a defensible go/no-go signal before engaging a vendor.",
     url: "https://deveshsety.github.io/erp-questionnaire/",
     language: "JavaScript",
-    topics: ["HTML", "CSS", "JavaScript"],
+    topics: ["JavaScript", "SQL", "Supabase", "Playwright"],
   },
   {
     id: 2,
@@ -39,12 +39,12 @@ const allProjects: Project[] = [
   {
     id: 3,
     name: "GrowthExchange",
-    description: "Two-sided marketplace matching founders with channel-specialist growth marketers with scoping and milestone tracking.",
-    scope: "SEO, paid social, retention, and referral specialist matching",
-    outcome: "Streamlines founder-marketer pairing with project scoping built in.",
+    description: "Corporate landing site for a trading and investment firm, built with React and Vite featuring smooth-scroll navigation and responsive layout.",
+    scope: "Investment approach, company overview, and client acquisition sections",
+    outcome: "Professional web presence showcasing firm credibility and driving inbound leads.",
     url: "https://github.com/deveshsety/GrowthExchange",
     language: "JavaScript",
-    topics: ["JavaScript", "HTML", "SCSS"],
+    topics: ["React", "Vite", "SCSS"],
   },
 ];
 

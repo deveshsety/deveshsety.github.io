@@ -3,6 +3,7 @@
 import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "motion/react";
 import { List, X } from "@phosphor-icons/react";
+import ThemeToggle from "./ThemeToggle";
 
 const navLinks = [
   { label: "Home", href: "#home" },
@@ -42,7 +43,7 @@ export default function Navigation() {
         transition={{ duration: 0.8, delay: 0.2, ease: [0.76, 0, 0.24, 1] }}
         className={`fixed top-0 left-0 right-0 z-[150] transition-all duration-500 nav-height ${
           isScrolled
-            ? "bg-[var(--color-anthracite)]/80 backdrop-blur-md border-b border-white/5"
+            ? "bg-[var(--color-anthracite)]/80 backdrop-blur-md border-b border-[var(--color-slate-border)]"
             : "bg-transparent"
         }`}
       >
@@ -70,15 +71,19 @@ export default function Navigation() {
                 <span className="absolute -bottom-1 left-0 w-0 h-[1px] bg-[var(--color-copper)] group-hover:w-full transition-all duration-300" />
               </motion.a>
             ))}
+            <ThemeToggle />
           </div>
 
-          <motion.button
-            onClick={() => setMobileOpen(!mobileOpen)}
-            className="md:hidden text-[var(--color-platinum)]/80 hover:text-[var(--color-platinum)] p-2"
-            whileTap={{ scale: 0.9 }}
-          >
-            {mobileOpen ? <X size={24} /> : <List size={24} />}
-          </motion.button>
+          <div className="flex items-center gap-2 md:hidden">
+            <ThemeToggle />
+            <motion.button
+              onClick={() => setMobileOpen(!mobileOpen)}
+              className="text-[var(--color-platinum)]/80 hover:text-[var(--color-platinum)] p-2"
+              whileTap={{ scale: 0.9 }}
+            >
+              {mobileOpen ? <X size={24} /> : <List size={24} />}
+            </motion.button>
+          </div>
         </div>
       </motion.nav>
 

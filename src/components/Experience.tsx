@@ -3,6 +3,18 @@
 import { useRef } from "react";
 import { motion, useInView } from "motion/react";
 
+// Safe parser — only allows <strong> tags, escapes everything else
+function parseRichText(text: string): React.ReactNode[] {
+  const parts = text.split(/(<strong>.*?<\/strong>)/g);
+  return parts.map((part, i) => {
+    if (part.startsWith("<strong>") && part.endsWith("</strong>")) {
+      const inner = part.slice(8, -9);
+      return <strong key={i} className="text-[var(--color-platinum)] font-medium">{inner}</strong>;
+    }
+    return <span key={i}>{part}</span>;
+  });
+}
+
 
 const experiences = [
   {
@@ -101,7 +113,7 @@ export default function Experience() {
                     className="text-sm text-[var(--color-steel)] leading-relaxed flex items-start gap-3"
                   >
                     <span className="w-1.5 h-1.5 rounded-full bg-[var(--color-copper)] mt-1.5 shrink-0" />
-                    <span dangerouslySetInnerHTML={{ __html: achievement }} />
+                    <span>{parseRichText(achievement)}</span>
                   </motion.li>
                 ))}
               </ul>

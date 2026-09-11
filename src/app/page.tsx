@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import LoadingScreen from "@/components/LoadingScreen";
+import ParticleCanvas from "@/components/ParticleCanvas";
 import Navigation from "@/components/Navigation";
 import Hero from "@/components/Hero";
 import About from "@/components/About";
@@ -33,6 +34,7 @@ export default function Home() {
           loaded ? "opacity-100" : "opacity-0"
         }`}
       >
+        <ParticleCanvas />
         <Navigation />
         <ScrollTracker sections={["home", "about", "projects", "experience", "skills", "education", "awards", "contact"]} />
         <main>

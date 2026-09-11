@@ -31,17 +31,15 @@ export default function Hero() {
     <section
       id="home"
       ref={ref}
-      className="relative hero-viewport flex items-center justify-center overflow-hidden"
+      className="relative hero-viewport flex items-center justify-center overflow-hidden pt-20 md:pt-0"
     >
       <div className="absolute inset-0 bg-gradient-to-b from-[var(--color-anthracite)] via-[var(--color-anthracite-deep)] to-[var(--color-anthracite)]" />
-
-      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-[var(--color-copper)]/5 rounded-full blur-[120px]" />
 
       <motion.div
         style={{ y, opacity }}
         className="relative z-10 container-main w-full"
       >
-        <div className="flex flex-col gap-6">
+        <div className="flex flex-col gap-4 md:gap-6">
           <motion.div
             variants={textReveal}
             initial="hidden"
@@ -84,7 +82,7 @@ export default function Hero() {
             initial="hidden"
             animate="visible"
             custom={3}
-            className="flex items-baseline gap-3 mt-4"
+            className="flex flex-col md:flex-row md:items-baseline gap-2 md:gap-3 mt-2 md:mt-4"
           >
             <span className="metric-large">80%</span>
             <span className="metric-label">
@@ -97,7 +95,7 @@ export default function Hero() {
             initial="hidden"
             animate="visible"
             custom={4}
-            className="flex flex-wrap items-center gap-4 mt-4"
+            className="flex flex-wrap items-center gap-3 md:gap-4 mt-2 md:mt-4"
           >
             <motion.a
               href="#projects"

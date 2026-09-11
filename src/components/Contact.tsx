@@ -20,6 +20,8 @@ export default function Contact({ info }: { info: ContactInfo }) {
     message: "",
   });
   const [submitted, setSubmitted] = useState(false);
+  const [sending, setSending] = useState(false);
+  const [submitError, setSubmitError] = useState("");
   const [errors, setErrors] = useState<Record<string, string>>({});
 
   const validate = () => {
@@ -32,12 +34,41 @@ export default function Contact({ info }: { info: ContactInfo }) {
     return Object.keys(newErrors).length === 0;
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     if (!validate()) return;
-    setSubmitted(true);
-    setTimeout(() => setSubmitted(false), 4000);
-    setFormState({ name: "", email: "", message: "" });
+
+    setSending(true);
+    setSubmitError("");
+
+    try {
+      const res = await fetch("https://api.web3forms.com/submit", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          access_key: process.env.NEXT_PUBLIC_WEB3FORMS_KEY,
+          name: formState.name,
+          email: formState.email,
+          message: formState.message,
+          subject: `New message from ${formState.name}`,
+        }),
+      });
+
+      const data = await res.json();
+
+      if (!data.success) {
+        setSubmitError("Failed to send message. Try again.");
+        return;
+      }
+
+      setSubmitted(true);
+      setFormState({ name: "", email: "", message: "" });
+      setTimeout(() => setSubmitted(false), 4000);
+    } catch {
+      setSubmitError("Network error. Check your connection and try again.");
+    } finally {
+      setSending(false);
+    }
   };
 
   return (
@@ -211,18 +242,40 @@ export default function Contact({ info }: { info: ContactInfo }) {
               )}
             </div>
 
+            {submitError && (
+              <motion.p
+                initial={{ opacity: 0, y: -10 }}
+                animate={{ opacity: 1, y: 0 }}
+                className="text-sm text-red-500 bg-red-500/10 border border-red-500/20 p-3"
+                role="alert"
+              >
+                {submitError}
+              </motion.p>
+            )}
+
             <motion.button
               type="submit"
               className="btn btn-primary w-full sm:w-auto group"
-              whileHover={{ scale: 1.02 }}
-              whileTap={{ scale: 0.98 }}
-              disabled={submitted}
+              whileHover={{ scale: sending ? 1 : 1.02 }}
+              whileTap={{ scale: sending ? 1 : 0.98 }}
+              disabled={sending || submitted}
             >
-              {submitted ? "Message Sent!" : "Send Message"}
-              <PaperPlaneRight
-                size={16}
-                className="group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform"
-              />
+              {sending ? (
+                <>
+                  <span className="w-4 h-4 border-2 border-[var(--color-anthracite)] border-t-transparent rounded-full animate-spin" />
+                  Sending...
+                </>
+              ) : submitted ? (
+                "Message Sent!"
+              ) : (
+                <>
+                  Send Message
+                  <PaperPlaneRight
+                    size={16}
+                    className="group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform"
+                  />
+                </>
+              )}
             </motion.button>
           </motion.form>
         </div>
