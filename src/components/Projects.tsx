@@ -42,7 +42,7 @@ const allProjects: Project[] = [
     description: "CART model ranking 20,000 customers by campaign-response likelihood, tuned on ROC-AUC with lift and cumulative-gains analysis.",
     scope: "Data prep, overfitting control, ROC-AUC tuning, lift analysis, and customer-segment profiling",
     outcome: "Top 30% of customers by score capture ~64% of responders (2.1x lift), so 70% fewer contacts.",
-    url: "https://github.com/deveshsety/deveshsety.github.io/blob/main/public/projects/campaign-response-decision-tree.ipynb",
+    url: "https://github.com/deveshsety/deveshsety.github.io/blob/scroll-overhaul/public/projects/campaign-response-decision-tree.ipynb",
     language: "Python",
     topics: ["Python", "scikit-learn", "Decision Tree"],
   },

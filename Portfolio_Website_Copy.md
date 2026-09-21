@@ -77,7 +77,7 @@
 **Outcome / who it's for:**
 > Top 30% of customers by score capture ~64% of responders (2.1x lift), so 70% fewer contacts.
 
-**Buttons:** `[ GitHub ](https://github.com/deveshsety/deveshsety.github.io/blob/main/public/projects/campaign-response-decision-tree.ipynb)`
+**Buttons:** `[ GitHub ](https://github.com/deveshsety/deveshsety.github.io/blob/scroll-overhaul/public/projects/campaign-response-decision-tree.ipynb)`
 
 ---
 
