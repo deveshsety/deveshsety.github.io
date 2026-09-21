@@ -65,19 +65,19 @@
 
 ---
 
-### 3. GrowthExchange — *Growth Marketing Marketplace*
+### 3. Campaign Response Decision Tree — *Customer Scoring Model*
 **Problem:**
-> Early-stage founders struggle to find vetted growth marketers for specific channels — marketplaces are generic, not channel-specialized.
+> Marketers waste budget contacting every customer in a campaign, when only a small segment is likely to respond.
 
 **What I built:**
-> A two-sided marketplace matching founders with channel-specialist growth marketers (SEO, paid social, retention, referral) with project scoping and milestone tracking.
+> A CART model ranking 20,000 customers by campaign-response likelihood, tuned on ROC-AUC with lift and cumulative-gains analysis.
 
-**Tech stack:** JavaScript, HTML, SCSS
+**Tech stack:** Python, scikit-learn, Decision Tree
 
 **Outcome / who it's for:**
-> Reduces time-to-hire for growth roles from weeks to days — serves founders needing channel-specific execution, not generalists.
+> Top 30% of customers by score capture ~64% of responders (2.1x lift), so 70% fewer contacts.
 
-**Buttons:** `[ Live Demo ](https://github.com/deveshsety/GrowthExchange)` &nbsp;·&nbsp; `[ GitHub ](https://github.com/deveshsety/GrowthExchange)`
+**Buttons:** `[ GitHub ](https://github.com/deveshsety/deveshsety.github.io/blob/main/public/projects/campaign-response-decision-tree.ipynb)`
 
 ---
 
@@ -125,5 +125,5 @@
 ## Still needed before launch
 - [x] ERP Questionnaire live at https://deveshsety.github.io/erp-questionnaire/
 - [ ] Deploy Consulting Arena for live demo (GitHub Pages from /docs or Vercel)
-- [ ] Deploy GrowthExchange for live demo (Vercel/Netlify after `npm run build`)
+- [ ] Deploy Campaign Response Decision Tree (GitHub Pages from /public)
 - [x] Resume PDF created at `/public/resume.pdf`
