@@ -49,7 +49,7 @@ export default function Hero() {
           >
             <div className="w-12 h-[1px] bg-[var(--color-copper)]" />
             <span className="text-xs tracking-[0.3em] uppercase text-[var(--color-steel-dim)]">
-              Backend Developer → Tech Consultant
+              Backend Developer → Consultant
             </span>
           </motion.div>
 

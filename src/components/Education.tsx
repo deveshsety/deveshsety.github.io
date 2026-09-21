@@ -8,7 +8,7 @@ const education = [
   {
     degree: "MBA (PGPM)",
     institution: "Great Lakes Institute of Management, Chennai",
-    score: "2.93 CGPA",
+    score: "3.16 CGPA",
     year: "2027",
   },
   {
